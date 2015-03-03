@@ -166,7 +166,7 @@ Public Class WavesUtilites
 
     Public Sub ChangeBitsPerSample(ByVal sourcePath As String, ByVal destinationPath As String)
         Using waveFileReader As NAudio.Wave.WaveFileReader = New NAudio.Wave.WaveFileReader(sourcePath)
-            Dim format As NAudio.Wave.WaveFormat = New Wave.WaveFormat(WavSampleRate.hz44100, 24, waveFileReader.WaveFormat.Channels)
+            Dim format As NAudio.Wave.WaveFormat = New Wave.WaveFormat(WavSampleRate.hz44100, 8, waveFileReader.WaveFormat.Channels)
             Using conversionStream = New Wave.WaveFormatConversionStream(format, waveFileReader)
                 Wave.WaveFileWriter.CreateWaveFile(destinationPath, conversionStream)
             End Using
