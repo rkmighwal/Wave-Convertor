@@ -39,7 +39,7 @@ Partial Class Form1
         'openFileDialog
         '
         Me.openFileDialog.DefaultExt = "wav"
-        Me.openFileDialog.Filter = "Wave Sound Files (*.wav)|*.wav"
+        Me.openFileDialog.Filter = "MP3 Files (*.mp3)|*.mp3"
         Me.openFileDialog.Title = "Select File"
         '
         'btnBrowse
@@ -82,7 +82,7 @@ Partial Class Form1
         'saveFileDialog
         '
         Me.saveFileDialog.DefaultExt = "wav"
-        Me.saveFileDialog.Filter = "Wave Sound Files (*.wav)|*.wav"
+        Me.saveFileDialog.Filter = "MP3 Files (*.mp3)|*.mp3"
         '
         'btnConvert
         '

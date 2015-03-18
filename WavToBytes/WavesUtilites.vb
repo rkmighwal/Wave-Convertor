@@ -165,10 +165,17 @@ Public Class WavesUtilites
     End Sub
 
     Public Sub ChangeBitsPerSample(ByVal sourcePath As String, ByVal destinationPath As String)
-        Using waveFileReader As NAudio.Wave.WaveFileReader = New NAudio.Wave.WaveFileReader(sourcePath)
-            Dim format As NAudio.Wave.WaveFormat = New Wave.WaveFormat(WavSampleRate.hz44100, 8, waveFileReader.WaveFormat.Channels)
-            Using conversionStream = New Wave.WaveFormatConversionStream(format, waveFileReader)
-                Wave.WaveFileWriter.CreateWaveFile(destinationPath, conversionStream)
+        'Using waveFileReader As NAudio.Wave.WaveFileReader = New NAudio.Wave.WaveFileReader(sourcePath)
+        '    Dim format As NAudio.Wave.WaveFormat = New Wave.WaveFormat(waveFileReader.WaveFormat.SampleRate, waveFileReader.WaveFormat.BitsPerSample, waveFileReader.WaveFormat.Channels)
+        '    Using conversionStream = New Wave.WaveFormatConversionStream(format, waveFileReader)
+        '        Wave.WaveFileWriter.CreateWaveFile(destinationPath, conversionStream)
+        '    End Using
+        'End Using
+        Using mp3FileReader As NAudio.Wave.Mp3FileReader = New NAudio.Wave.Mp3FileReader(sourcePath)
+            Dim conversionStream As Wave.WaveStream = Wave.WaveFormatConversionStream.CreatePcmStream(mp3FileReader)
+            Dim format As NAudio.Wave.WaveFormat = New Wave.WaveFormat(mp3FileReader.WaveFormat.SampleRate, 24, mp3FileReader.WaveFormat.Channels)
+            Using pcmConversionStream = New Wave.WaveFormatConversionStream(format, conversionStream)
+                Wave.WaveFileWriter.CreateWaveFile(destinationPath, pcmConversionStream)
             End Using
         End Using
     End Sub
